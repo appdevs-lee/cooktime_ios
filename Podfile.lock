@@ -1,16 +1,40 @@
 PODS:
   - Alamofire (5.8.1)
+  - KakaoSDKAuth (2.20.0):
+    - KakaoSDKCommon (= 2.20.0)
+  - KakaoSDKCommon (2.20.0):
+    - KakaoSDKCommon/Common (= 2.20.0)
+    - KakaoSDKCommon/Network (= 2.20.0)
+  - KakaoSDKCommon/Common (2.20.0)
+  - KakaoSDKCommon/Network (2.20.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.20.0)
+  - KakaoSDKUser (2.20.0):
+    - KakaoSDKAuth (= 2.20.0)
+  - naveridlogin-sdk-ios (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
+  - naveridlogin-sdk-ios
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
+    - naveridlogin-sdk-ios
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  KakaoSDKAuth: 02742f4681af6da8c4aa7b0f71df98ca9e7df834
+  KakaoSDKCommon: 060a8085733a215a048f9bf9b39a846d1be1daee
+  KakaoSDKUser: 0594b37675fb634304da3ecc83830c0ec84ceef5
+  naveridlogin-sdk-ios: 03fa42741249ab10b804f6b2574b56b6d89045ba
 
-PODFILE CHECKSUM: 6d2f2c6992644482dd000bd72332bd339ffd4850
+PODFILE CHECKSUM: 976872dcbc4836ba70a6d7da19ba4725761ac84e
 
 COCOAPODS: 1.13.0

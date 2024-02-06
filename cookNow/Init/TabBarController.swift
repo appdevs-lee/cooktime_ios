@@ -20,6 +20,13 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         self.setUpTabBar(tabBar: tabBar)
+        
+        
+//        let homeVC = RenewalMainViewController()
+        
+        self.viewControllers = [
+//            self.createTabBarItem(tabBarTitle: "재료함", tabBarImage: "Home", selectedImage: "SelectedHomeIcon", viewController: homeVC),
+        ]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,7 +43,7 @@ class TabBarController: UITabBarController {
     
     func setUpTabBar(tabBar: UITabBar) {
         tabBar.backgroundColor = UIColor.white
-        tabBar.tintColor = .useRGB(red: 151, green: 157, blue: 242)
+        tabBar.tintColor = .useRGB(red: 28, green: 157, blue: 46)
         
         let appearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font: UIFont.useFont(ofSize: 12, weight: .Medium)]
@@ -59,11 +66,6 @@ class TabBarController: UITabBarController {
 
 // MARK: - Extension for methods added
 extension TabBarController {
-    func setTabBarItem() {
-        let tabBarItem = UITabBarItem()
-        
-    }
-    
     func createTabBarItem(tabBarTitle: String, tabBarImage: String, selectedImage: String, viewController: UIViewController) -> UINavigationController {
         let naviVC = CustomizedNavigationController(rootViewController: viewController)
         naviVC.tabBarItem.title = tabBarTitle

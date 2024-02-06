@@ -11,7 +11,7 @@ import UIKit
 struct ReferenceValues {
     static weak var keyWindow: UIWindow!
     // FIXME: 첫화면 만들어지면 뷰 확인하기
-    static weak var firstVC: ViewController?
+    static weak var firstVC: LoginViewController?
 }
 
 // MARK: - Extension of referenceValues
