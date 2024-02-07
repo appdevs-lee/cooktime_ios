@@ -6,11 +6,39 @@
 //
 
 import UIKit
+import Gifu
 
 final class LoginViewController: UIViewController {
     
+    lazy var gifImageView: GIFImageView = {
+        let imageView = GIFImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        imageView.animate(withGIFNamed: "Splash", loopCount: 1, preparationBlock:  {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.transition(with: self.view, duration: 0.5) {
+                    self.changeAlphaComponent(1)
+                    
+                }
+                
+            }
+            
+        })
+
+        
+//        imageView.animate(withGIFNamed: "Splash", loopCount: 1, animationBlock:  {
+//            print(imageView.frameCount / 25)
+//            print(imageView.animationDuration)
+//            
+//        })
+        
+        return imageView
+    }()
+    
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.isHidden = true
         imageView.image = UIImage(named: "LoginBGImage")
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -21,6 +49,7 @@ final class LoginViewController: UIViewController {
     
     lazy var mainIconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.alpha = 0
         imageView.image = UIImage(named: "LoginMainIcon")
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -31,6 +60,7 @@ final class LoginViewController: UIViewController {
     
     lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
+        label.alpha = 0
         label.text = "쿡 나우"
         label.textColor = .useRGB(red: 61, green: 61, blue: 61)
         label.font = .useFont(ofSize: 39, weight: .Bold)
@@ -41,6 +71,7 @@ final class LoginViewController: UIViewController {
     
     lazy var snsLoginTitleLabel: UILabel = {
         let label = UILabel()
+        label.alpha = 0
         label.text = "소셜 계정으로 간편 가입하기"
         label.textColor = .useRGB(red: 61, green: 61, blue: 61)
         label.font = .useFont(ofSize: 14, weight: .Medium)
@@ -51,6 +82,7 @@ final class LoginViewController: UIViewController {
     
     lazy var snsLoginButtonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [self.kakaoButton, self.naverButton, self.appleButton])
+        stackView.alpha = 0
         stackView.axis = .horizontal
         stackView.spacing = 20
         stackView.distribution = .fill
@@ -117,7 +149,7 @@ final class LoginViewController: UIViewController {
 // MARK: Extension for essential methods
 extension LoginViewController: EssentialViewMethods {
     func setViewFoundation() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .useRGB(red: 255, green: 247, blue: 230)
     }
     
     func initializeObjects() {
@@ -142,7 +174,8 @@ extension LoginViewController: EssentialViewMethods {
             self.mainIconImageView,
             self.mainTitleLabel,
             self.snsLoginTitleLabel,
-            self.snsLoginButtonStackView
+            self.snsLoginButtonStackView,
+            self.gifImageView
         ], to: self.view)
     }
     
@@ -202,6 +235,14 @@ extension LoginViewController: EssentialViewMethods {
             self.appleButton.widthAnchor.constraint(equalToConstant: 54),
             self.appleButton.heightAnchor.constraint(equalToConstant: 54)
         ])
+        
+        // gifImageView
+        NSLayoutConstraint.activate([
+            self.gifImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.gifImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.gifImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.gifImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
     
     func setViewAfterTransition() {
@@ -212,13 +253,33 @@ extension LoginViewController: EssentialViewMethods {
 
 // MARK: - Extension for methods added
 extension LoginViewController {
-    
+    func changeAlphaComponent(_ alpha: CGFloat) {
+        self.mainIconImageView.alpha = alpha
+        self.mainTitleLabel.alpha = alpha
+        self.snsLoginTitleLabel.alpha = alpha
+        self.snsLoginButtonStackView.alpha = alpha
+    }
 }
 
 // MARK: - Extension for selector methods
 extension LoginViewController {
     @objc func kakaoButton(_ sender: UIButton) {
-        SupportingMethods.shared.turnCoverView(.on)
+        self.gifImageView.animate(withGIFNamed: "loadingAfterLogin", loopCount: 1, preparationBlock: {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                UIView.transition(with: self.view, duration: 0.3) {
+                    self.changeAlphaComponent(0)
+                    
+                    SupportingMethods.shared.turnCoverView(.on)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        SupportingMethods.shared.turnCoverView(.off)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        })
     }
     
     @objc func naverButton(_ sender: UIButton) {
