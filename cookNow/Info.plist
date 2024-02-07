@@ -19,11 +19,9 @@
 	<array>
 		<string>naversearchapp</string>
 		<string>naversearchthirdlogin</string>
-        <!-- 카카오톡으로 로그인 -->
-        <string>kakaokompassauth</string>
-        <!-- 카카오톡 공유 -->
-        <string>kakaolink</string>
-    </array>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Medium.otf</string>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0533D9342B733B1300DF51B1 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0533D9332B733B1300DF51B1 /* loading.gif */; };
 		0579B5B42B71BEFE0054117E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B32B71BEFE0054117E /* LoginViewController.swift */; };
 		0579B5B62B71C69B0054117E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B52B71C69B0054117E /* LoginModel.swift */; };
 		0579B5BA2B71C6D80054117E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B92B71C6D80054117E /* User.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0533D9332B733B1300DF51B1 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		0579B5B32B71BEFE0054117E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0579B5B52B71C69B0054117E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0579B5B92B71C6D80054117E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0533D9322B733AF000DF51B1 /* GifAsset */ = {
+			isa = PBXGroup;
+			children = (
+				0533D9332B733B1300DF51B1 /* loading.gif */,
+			);
+			path = GifAsset;
+			sourceTree = "<group>";
+		};
 		0579B5B22B71BEEF0054117E /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 				2D333F842B55698000B418C0 /* Info.plist */,
 				2D333F762B55697F00B418C0 /* AppDelegate.swift */,
 				2D333F782B55697F00B418C0 /* SceneDelegate.swift */,
+				0533D9322B733AF000DF51B1 /* GifAsset */,
 				2D333FA42B556D2E00B418C0 /* Fonts */,
 				2D333F932B556AAF00B418C0 /* Assistant */,
 				2D333F8A2B556AAF00B418C0 /* Template */,
@@ -297,6 +308,7 @@
 				2D333FAA2B556D3600B418C0 /* Pretendard-Bold.otf in Resources */,
 				2D333F832B55698000B418C0 /* LaunchScreen.storyboard in Resources */,
 				2D333F802B55698000B418C0 /* Assets.xcassets in Resources */,
+				0533D9342B733B1300DF51B1 /* loading.gif in Resources */,
 				2D333F7E2B55697F00B418C0 /* Main.storyboard in Resources */,
 				2D333FA82B556D3200B418C0 /* Pretendard-Medium.otf in Resources */,
 			);

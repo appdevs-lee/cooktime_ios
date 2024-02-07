@@ -218,7 +218,7 @@ extension LoginViewController {
 // MARK: - Extension for selector methods
 extension LoginViewController {
     @objc func kakaoButton(_ sender: UIButton) {
-        
+        SupportingMethods.shared.turnCoverView(.on)
     }
     
     @objc func naverButton(_ sender: UIButton) {

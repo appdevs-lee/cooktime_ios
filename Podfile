@@ -6,7 +6,10 @@ target 'cookNow' do
   use_frameworks!
 
   # Pods for cookNow
+  # 네트워킹
   pod 'Alamofire'
+  # GIF
+  pod 'Gifu'
   # 카카오톡 로그인 관련
   pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
   pod 'KakaoSDKAuth'  # 사용자 인증
