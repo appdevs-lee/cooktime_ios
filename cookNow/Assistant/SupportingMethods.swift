@@ -86,31 +86,33 @@ class SupportingMethods {
         coverView.isHidden = true
         coverView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        
         // Activity Indicator View
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-//        let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        coverView.addSubview(imageView)
+
         coverView.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
             // Activity Indicator
-//            imageView.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
-//            imageView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
-            
             activityIndicator.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
         ])
         
-//        imageView.animate(withGIFNamed: "loading")
-        
         activityIndicator.startAnimating()
+        
+//        let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        coverView.addSubview(imageView)
+//        
+//        NSLayoutConstraint.activate([
+//            // Activity Indicator
+//            imageView.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
+//            imageView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
+//        ])
+//        
+//        imageView.animate(withGIFNamed: "loading")
         
         return coverView
     }()
