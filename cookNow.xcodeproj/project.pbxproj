@@ -14,6 +14,8 @@
 		0579B5B62B71C69B0054117E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B52B71C69B0054117E /* LoginModel.swift */; };
 		0579B5BA2B71C6D80054117E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B92B71C6D80054117E /* User.swift */; };
 		0579B5BF2B71C8880054117E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5BE2B71C8880054117E /* SettingViewController.swift */; };
+		0597DA852B74758900D3AA4D /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597DA842B74758900D3AA4D /* IngredientsViewController.swift */; };
+		0597DA872B74759700D3AA4D /* RefrigeratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597DA862B74759700D3AA4D /* RefrigeratorViewController.swift */; };
 		05981CD82B7457FB009AC0F8 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 05981CD72B7457FB009AC0F8 /* Splash.json */; };
 		05981CDA2B745FAF009AC0F8 /* SplashLottie.gif in Resources */ = {isa = PBXBuildFile; fileRef = 05981CD92B745FAF009AC0F8 /* SplashLottie.gif */; };
 		05981CDD2B7462D1009AC0F8 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 05981CDB2B7462D1009AC0F8 /* loading.json */; };
@@ -52,6 +54,8 @@
 		0579B5B92B71C6D80054117E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0579B5BE2B71C8880054117E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0579B5C12B71D3F90054117E /* cookNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cookNow.entitlements; sourceTree = "<group>"; };
+		0597DA842B74758900D3AA4D /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
+		0597DA862B74759700D3AA4D /* RefrigeratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefrigeratorViewController.swift; sourceTree = "<group>"; };
 		05981CD72B7457FB009AC0F8 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		05981CD92B745FAF009AC0F8 /* SplashLottie.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SplashLottie.gif; sourceTree = "<group>"; };
 		05981CDB2B7462D1009AC0F8 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -155,7 +159,9 @@
 		0579B5BD2B71C87A0054117E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0579B5BE2B71C8880054117E /* SettingViewController.swift */,
+				0597DA812B74753000D3AA4D /* Ingredients */,
+				0597DA832B74755400D3AA4D /* Refrigerator */,
+				0597DA822B74754F00D3AA4D /* Setting */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,6 +176,30 @@
 				2D333FAD2B5578FB00B418C0 /* CustomizedNavigationController.swift */,
 			);
 			path = Init;
+			sourceTree = "<group>";
+		};
+		0597DA812B74753000D3AA4D /* Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				0597DA842B74758900D3AA4D /* IngredientsViewController.swift */,
+			);
+			path = Ingredients;
+			sourceTree = "<group>";
+		};
+		0597DA822B74754F00D3AA4D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0579B5BE2B71C8880054117E /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		0597DA832B74755400D3AA4D /* Refrigerator */ = {
+			isa = PBXGroup;
+			children = (
+				0597DA862B74759700D3AA4D /* RefrigeratorViewController.swift */,
+			);
+			path = Refrigerator;
 			sourceTree = "<group>";
 		};
 		17245C2E1583CA880841403D /* Pods */ = {
@@ -391,6 +421,7 @@
 				2D333F9B2B556ABB00B418C0 /* SupportingMethods.swift in Sources */,
 				2D333FAC2B5576B600B418C0 /* TabBarController.swift in Sources */,
 				2D333F992B556AB600B418C0 /* Extension.swift in Sources */,
+				0597DA872B74759700D3AA4D /* RefrigeratorViewController.swift in Sources */,
 				2D333F9A2B556AB800B418C0 /* AlertPopViewController.swift in Sources */,
 				2D333F9E2B556AC400B418C0 /* BottomSheetViewController.swift in Sources */,
 				2D333FA32B556AD100B418C0 /* ViewPagerCollectionViewCell.swift in Sources */,
@@ -405,6 +436,7 @@
 				0579B5BF2B71C8880054117E /* SettingViewController.swift in Sources */,
 				2D333F792B55697F00B418C0 /* SceneDelegate.swift in Sources */,
 				2D333F982B556AB300B418C0 /* ReferenceValues.swift in Sources */,
+				0597DA852B74758900D3AA4D /* IngredientsViewController.swift in Sources */,
 				2D333FA12B556ACC00B418C0 /* TemplateHeaderFooterView.swift in Sources */,
 				0579B5BA2B71C6D80054117E /* User.swift in Sources */,
 			);

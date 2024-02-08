@@ -309,10 +309,14 @@ extension LoginViewController {
             self.changeAlphaComponent(0)
             SupportingMethods.shared.turnCoverView(.on)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                SupportingMethods.shared.turnCoverView(.off)
-                
-            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            let vc = TabBarController()
+            vc.selectedIndex = 1
+            
+            SupportingMethods.shared.turnCoverView(.off)
+            self.present(vc, animated: true)
         }
         
         
