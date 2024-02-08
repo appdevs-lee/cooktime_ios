@@ -14,6 +14,10 @@
 		0579B5B62B71C69B0054117E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B52B71C69B0054117E /* LoginModel.swift */; };
 		0579B5BA2B71C6D80054117E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B92B71C6D80054117E /* User.swift */; };
 		0579B5BF2B71C8880054117E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5BE2B71C8880054117E /* SettingViewController.swift */; };
+		05981CD82B7457FB009AC0F8 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 05981CD72B7457FB009AC0F8 /* Splash.json */; };
+		05981CDA2B745FAF009AC0F8 /* SplashLottie.gif in Resources */ = {isa = PBXBuildFile; fileRef = 05981CD92B745FAF009AC0F8 /* SplashLottie.gif */; };
+		05981CDD2B7462D1009AC0F8 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 05981CDB2B7462D1009AC0F8 /* loading.json */; };
+		05981CDE2B7462D1009AC0F8 /* loadingAfterLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 05981CDC2B7462D1009AC0F8 /* loadingAfterLogin.json */; };
 		2D333F772B55697F00B418C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D333F762B55697F00B418C0 /* AppDelegate.swift */; };
 		2D333F792B55697F00B418C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D333F782B55697F00B418C0 /* SceneDelegate.swift */; };
 		2D333F7E2B55697F00B418C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D333F7C2B55697F00B418C0 /* Main.storyboard */; };
@@ -48,6 +52,10 @@
 		0579B5B92B71C6D80054117E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0579B5BE2B71C8880054117E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0579B5C12B71D3F90054117E /* cookNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cookNow.entitlements; sourceTree = "<group>"; };
+		05981CD72B7457FB009AC0F8 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
+		05981CD92B745FAF009AC0F8 /* SplashLottie.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SplashLottie.gif; sourceTree = "<group>"; };
+		05981CDB2B7462D1009AC0F8 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		05981CDC2B7462D1009AC0F8 /* loadingAfterLogin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAfterLogin.json; sourceTree = "<group>"; };
 		2B485BFE5A908B4AB37D9847 /* Pods-cookNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cookNow.debug.xcconfig"; path = "Target Support Files/Pods-cookNow/Pods-cookNow.debug.xcconfig"; sourceTree = "<group>"; };
 		2D333F732B55697F00B418C0 /* cookNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cookNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D333F762B55697F00B418C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +103,10 @@
 				0533D9332B733B1300DF51B1 /* loading.gif */,
 				0533D9352B73864400DF51B1 /* loadingAfterLogin.gif */,
 				0533D9362B73864400DF51B1 /* Splash.gif */,
+				05981CD92B745FAF009AC0F8 /* SplashLottie.gif */,
+				05981CD72B7457FB009AC0F8 /* Splash.json */,
+				05981CDB2B7462D1009AC0F8 /* loading.json */,
+				05981CDC2B7462D1009AC0F8 /* loadingAfterLogin.json */,
 			);
 			path = GifAsset;
 			sourceTree = "<group>";
@@ -312,12 +324,16 @@
 			files = (
 				2D333FA92B556D3400B418C0 /* PretendardVariable.ttf in Resources */,
 				2D333FAA2B556D3600B418C0 /* Pretendard-Bold.otf in Resources */,
+				05981CDD2B7462D1009AC0F8 /* loading.json in Resources */,
 				0533D9372B73864400DF51B1 /* loadingAfterLogin.gif in Resources */,
 				2D333F832B55698000B418C0 /* LaunchScreen.storyboard in Resources */,
+				05981CD82B7457FB009AC0F8 /* Splash.json in Resources */,
 				2D333F802B55698000B418C0 /* Assets.xcassets in Resources */,
 				0533D9342B733B1300DF51B1 /* loading.gif in Resources */,
 				0533D9382B73864400DF51B1 /* Splash.gif in Resources */,
 				2D333F7E2B55697F00B418C0 /* Main.storyboard in Resources */,
+				05981CDA2B745FAF009AC0F8 /* SplashLottie.gif in Resources */,
+				05981CDE2B7462D1009AC0F8 /* loadingAfterLogin.json in Resources */,
 				2D333FA82B556D3200B418C0 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

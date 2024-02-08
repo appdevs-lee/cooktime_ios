@@ -12,6 +12,7 @@ PODS:
     - KakaoSDKCommon/Common (= 2.20.0)
   - KakaoSDKUser (2.20.0):
     - KakaoSDKAuth (= 2.20.0)
+  - lottie-ios (4.4.0)
   - naveridlogin-sdk-ios (4.2.0)
 
 DEPENDENCIES:
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - lottie-ios
   - naveridlogin-sdk-ios
 
 SPEC REPOS:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
+    - lottie-ios
     - naveridlogin-sdk-ios
 
 SPEC CHECKSUMS:
@@ -37,8 +40,9 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: 02742f4681af6da8c4aa7b0f71df98ca9e7df834
   KakaoSDKCommon: 060a8085733a215a048f9bf9b39a846d1be1daee
   KakaoSDKUser: 0594b37675fb634304da3ecc83830c0ec84ceef5
+  lottie-ios: ef1be1f90d54255f08e09d767950e43714661178
   naveridlogin-sdk-ios: 03fa42741249ab10b804f6b2574b56b6d89045ba
 
-PODFILE CHECKSUM: 9c0624c2759cc6401c992d3d4b7f84595ca12b42
+PODFILE CHECKSUM: 4ed0c9333a99c7bc1856728f53f868cf2d9b0f84
 
 COCOAPODS: 1.13.0

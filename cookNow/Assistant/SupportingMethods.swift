@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import PhotosUI
 import Gifu // https://gonslab.tistory.com/7
+import Lottie
 
 enum CoverViewState {
     case on
@@ -101,18 +102,32 @@ class SupportingMethods {
 //        
 //        activityIndicator.startAnimating()
         
-        let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        coverView.addSubview(imageView)
+//        
+//        NSLayoutConstraint.activate([
+//            // Activity Indicator
+//            imageView.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
+//            imageView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
+//        ])
+//        
+//        imageView.animate(withGIFNamed: "loading")
         
-        coverView.addSubview(imageView)
+        let animationView = LottieAnimationView(name: "loading")
+        animationView.loopMode = .loop
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        coverView.addSubview(animationView)
         
         NSLayoutConstraint.activate([
             // Activity Indicator
-            imageView.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
+            animationView.centerYAnchor.constraint(equalTo: coverView.centerYAnchor),
+            animationView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
         ])
         
-        imageView.animate(withGIFNamed: "loading")
+        animationView.play()
         
         return coverView
     }()

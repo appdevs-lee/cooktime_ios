@@ -10,6 +10,7 @@ target 'cookNow' do
   pod 'Alamofire'
   # GIF
   pod 'Gifu'
+  pod 'lottie-ios'
   # 카카오톡 로그인 관련
   pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
   pod 'KakaoSDKAuth'  # 사용자 인증

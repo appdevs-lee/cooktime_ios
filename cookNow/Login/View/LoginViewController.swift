@@ -7,34 +7,52 @@
 
 import UIKit
 import Gifu
+import Lottie
 
 final class LoginViewController: UIViewController {
     
-    lazy var gifImageView: GIFImageView = {
-        let imageView = GIFImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        imageView.animate(withGIFNamed: "Splash", loopCount: 1, preparationBlock:  {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    lazy var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "Splash")
+        view.play { completed in
+            if completed {
                 UIView.transition(with: self.view, duration: 0.5) {
                     self.changeAlphaComponent(1)
+                    view.isHidden = true
+                    self.animationAfterLoginView.isHidden = false
                     
                 }
-                
             }
-            
-        })
-
+        }
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-//        imageView.animate(withGIFNamed: "Splash", loopCount: 1, animationBlock:  {
-//            print(imageView.frameCount / 25)
-//            print(imageView.animationDuration)
+        return view
+    }()
+    
+    lazy var animationAfterLoginView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "loadingAfterLogin")
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+//    lazy var gifImageView: GIFImageView = {
+//        let imageView = GIFImageView()
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        imageView.animate(withGIFNamed: "SplashLottie", loopCount: 1, preparationBlock:  {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                UIView.transition(with: self.view, duration: 0.5) {
+//                    self.changeAlphaComponent(1)
+//                    
+//                }
+//                
+//            }
 //            
 //        })
-        
-        return imageView
-    }()
+//        
+//        return imageView
+//    }()
     
     lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -170,12 +188,14 @@ extension LoginViewController: EssentialViewMethods {
     
     func setSubviews() {
         SupportingMethods.shared.addSubviews([
+            self.animationView,
+            self.animationAfterLoginView,
             self.backgroundImageView,
             self.mainIconImageView,
             self.mainTitleLabel,
             self.snsLoginTitleLabel,
             self.snsLoginButtonStackView,
-            self.gifImageView
+//            self.gifImageView,
         ], to: self.view)
     }
     
@@ -237,11 +257,27 @@ extension LoginViewController: EssentialViewMethods {
         ])
         
         // gifImageView
+//        NSLayoutConstraint.activate([
+//            self.gifImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+//            self.gifImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+//            self.gifImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+//            self.gifImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+//        ])
+
+        // animationView
         NSLayoutConstraint.activate([
-            self.gifImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.gifImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.gifImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.gifImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.animationView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.animationView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.animationView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.animationView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])      
+        
+        // animationAfterLoginView
+        NSLayoutConstraint.activate([
+            self.animationAfterLoginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.animationAfterLoginView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.animationAfterLoginView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.animationAfterLoginView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
     
@@ -264,22 +300,13 @@ extension LoginViewController {
 // MARK: - Extension for selector methods
 extension LoginViewController {
     @objc func kakaoButton(_ sender: UIButton) {
-        self.gifImageView.animate(withGIFNamed: "loadingAfterLogin", loopCount: 1, preparationBlock: {
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                UIView.transition(with: self.view, duration: 0.3) {
-                    self.changeAlphaComponent(0)
-                    
-                    SupportingMethods.shared.turnCoverView(.on)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        SupportingMethods.shared.turnCoverView(.off)
-                        
-                    }
-                    
-                }
-                
-            }
+        self.animationAfterLoginView.play()
+        UIView.transition(with: self.view, duration: 0.5) {
+            self.changeAlphaComponent(0)
+            SupportingMethods.shared.turnCoverView(.on)
             
-        })
+        }
+        
     }
     
     @objc func naverButton(_ sender: UIButton) {
