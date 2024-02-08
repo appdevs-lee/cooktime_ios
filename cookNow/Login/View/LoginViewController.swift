@@ -14,15 +14,18 @@ final class LoginViewController: UIViewController {
     lazy var animationView: LottieAnimationView = {
         let view = LottieAnimationView(name: "Splash")
         view.play { completed in
-            if completed {
-                UIView.transition(with: self.view, duration: 0.5) {
-                    self.changeAlphaComponent(1)
-                    view.isHidden = true
-                    self.animationAfterLoginView.isHidden = false
-                    
-                }
-            }
+            view.isHidden = true
+            self.animationAfterLoginView.isHidden = false
+            
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.transition(with: self.view, duration: 0.5) {
+                self.changeAlphaComponent(1)
+                
+            }
+            
+        }
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -301,11 +304,18 @@ extension LoginViewController {
 extension LoginViewController {
     @objc func kakaoButton(_ sender: UIButton) {
         self.animationAfterLoginView.play()
+        
         UIView.transition(with: self.view, duration: 0.5) {
             self.changeAlphaComponent(0)
             SupportingMethods.shared.turnCoverView(.on)
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                SupportingMethods.shared.turnCoverView(.off)
+                
+            }
         }
+        
+        
         
     }
     

@@ -83,8 +83,8 @@ class SupportingMethods {
     private lazy var coverView: UIView = {
         // Cover View
         let coverView = UIView()
-        coverView.backgroundColor = UIColor.useRGB(red: 0, green: 0, blue: 0, alpha: 0.1)
-        coverView.isHidden = true
+        coverView.backgroundColor = UIColor.useRGB(red: 0, green: 0, blue: 0, alpha: 0)
+        coverView.alpha = 0
         coverView.translatesAutoresizingMaskIntoConstraints = false
         
         // Activity Indicator View
@@ -116,6 +116,7 @@ class SupportingMethods {
 //        imageView.animate(withGIFNamed: "loading")
         
         let animationView = LottieAnimationView(name: "loading")
+        animationView.alpha = 0
         animationView.loopMode = .loop
         animationView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -127,7 +128,17 @@ class SupportingMethods {
             animationView.centerXAnchor.constraint(equalTo: coverView.centerXAnchor)
         ])
         
-        animationView.play()
+        
+        if let topVC = self.getTopVC(ReferenceValues.keyWindow.rootViewController) {
+            UIView.transition(with: topVC.view, duration: 0.5) {
+                animationView.alpha = 1
+                
+            } completion: { bool in
+                animationView.play()
+                
+            }
+            
+        }
         
         return coverView
     }()
@@ -320,10 +331,29 @@ extension SupportingMethods {
         
         switch state {
         case .on:
-            self.coverView.isHidden = false
+            if let topVC = SupportingMethods.shared.getTopVC(ReferenceValues.keyWindow.rootViewController) {
+                UIView.transition(with: topVC.view, duration: 0.5) {
+                    self.coverView.alpha = 1
+                    
+                }
+                
+            } else {
+                self.coverView.alpha = 1
+                
+            }
             
         case .off:
-            self.coverView.isHidden = true
+            if let topVC = SupportingMethods.shared.getTopVC(ReferenceValues.keyWindow.rootViewController) {
+                UIView.transition(with: topVC.view, duration: 0.5) {
+                    self.coverView.alpha = 0
+                    
+                }
+                
+            } else {
+                self.coverView.alpha = 0
+                
+            }
+            
         }
     }
     
