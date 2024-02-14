@@ -17,5 +17,7 @@ target 'cookNow' do
   pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
   # 네이버 로그인 관련
   pod 'naveridlogin-sdk-ios'
+  #JWTDecoder
+  pod 'JWTDecode', '~> 3.0'
   
 end
