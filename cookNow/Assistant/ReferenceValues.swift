@@ -63,4 +63,5 @@ enum LoginWay: Int {
     case kakao = 0
     case naver = 1
     case apple = 2
+    case none = 4
 }

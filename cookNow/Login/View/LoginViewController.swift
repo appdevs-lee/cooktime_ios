@@ -178,6 +178,8 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: EssentialViewMethods {
     func setViewFoundation() {
         self.view.backgroundColor = .useRGB(red: 255, green: 247, blue: 230)
+        ReferenceValues.firstVC = self
+        
     }
     
     func initializeObjects() {
@@ -299,6 +301,28 @@ extension LoginViewController: EssentialViewMethods {
 
 // MARK: - Extension for methods added
 extension LoginViewController {
+    func replaySplashAnimation() {
+        self.animationView.isHidden = false
+        self.animationAfterLoginView.isHidden = true
+        
+        self.animationView.stop()
+        self.animationAfterLoginView.stop()
+        
+        self.animationView.play { completed in
+            self.animationView.isHidden = true
+            self.animationAfterLoginView.isHidden = false
+            
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.transition(with: self.view, duration: 0.5) {
+                self.changeAlphaComponent(1)
+                
+            }
+            
+        }
+        
+    }
+    
     func changeAlphaComponent(_ alpha: CGFloat) {
         self.mainIconImageView.alpha = alpha
         self.mainTitleLabel.alpha = alpha
@@ -307,19 +331,12 @@ extension LoginViewController {
     }
     
     func loadKakaoUserData() {
-        self.animationAfterLoginView.play()
-        
-        UIView.transition(with: self.view, duration: 0.5) {
-            self.changeAlphaComponent(0)
-            SupportingMethods.shared.turnCoverView(.on)
-        }
-        
-        UserApi.shared.me() { [self] user, error in
+        UserApi.shared.me() { user, error in
             if let error = error {
                 print("Error: \(error)")
                 SupportingMethods.shared.turnCoverView(.off)
             } else {
-                guard let email = user?.kakaoAccount?.email else {
+//                guard let email = user?.kakaoAccount?.email else {
 //                    let vc = AlertPopViewController(.normalOneButton(messageTitle: "이메일 정보 등록 요청", messageContent: "가입을 위해서는 이메일 정보가 필요합니다.\n 카카오톡에서 해당 계정에 이메일 정보를\n 추가 등록하신 후, 재로그인 해주세요.", buttonTitle: "확인", action: {
 //                        return
 //                    }))
@@ -327,16 +344,10 @@ extension LoginViewController {
 //                    self.present(vc, animated: true) {
 //                        SupportingMethods.shared.turnCoverView(.off)
 //                    }
-                    
-                    return
-                }
-                
-                guard let name = user?.kakaoAccount?.profile?.nickname
-                else {
-                    print("name is nil")
-                    SupportingMethods.shared.turnCoverView(.off)
-                    return
-                }
+//                    SupportingMethods.shared.turnCoverView(.off)
+//                    return
+//                }
+                print("name: \(user?.kakaoAccount?.name ?? "")")
                 
                 // FIXME: API 넣어주기
                 let vc = TabBarController()
@@ -405,6 +416,13 @@ extension LoginViewController {
 // MARK: - Extension for selector methods
 extension LoginViewController {
     @objc func kakaoButton(_ sender: UIButton) {
+        self.animationAfterLoginView.play()
+        
+        UIView.transition(with: self.view, duration: 0.5) {
+            self.changeAlphaComponent(0)
+            SupportingMethods.shared.turnCoverView(.on)
+        }
+        
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.loginWithKakaoTalk { (oauthToken, error) in
                 if let error = error {
