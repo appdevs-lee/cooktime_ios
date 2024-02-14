@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.8.1)
   - Gifu (3.3.1)
+  - JWTDecode (3.1.0)
   - KakaoSDKAuth (2.20.0):
     - KakaoSDKCommon (= 2.20.0)
   - KakaoSDKCommon (2.20.0):
@@ -18,6 +19,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Gifu
+  - JWTDecode (~> 3.0)
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
@@ -28,6 +30,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Gifu
+    - JWTDecode
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -37,12 +40,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
+  JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   KakaoSDKAuth: 02742f4681af6da8c4aa7b0f71df98ca9e7df834
   KakaoSDKCommon: 060a8085733a215a048f9bf9b39a846d1be1daee
   KakaoSDKUser: 0594b37675fb634304da3ecc83830c0ec84ceef5
   lottie-ios: ef1be1f90d54255f08e09d767950e43714661178
   naveridlogin-sdk-ios: 03fa42741249ab10b804f6b2574b56b6d89045ba
 
-PODFILE CHECKSUM: 4ed0c9333a99c7bc1856728f53f868cf2d9b0f84
+PODFILE CHECKSUM: 0bd5b1eb52d539f404b47d1e047b1253318c7671
 
 COCOAPODS: 1.13.0

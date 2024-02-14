@@ -8,6 +8,8 @@
 import UIKit
 import Gifu
 import Lottie
+import AuthenticationServices
+import JWTDecode
 
 final class LoginViewController: UIViewController {
     
@@ -328,7 +330,119 @@ extension LoginViewController {
     }
     
     @objc func appleButton(_ sender: UIButton) {
+        self.animationAfterLoginView.play()
+        
+        UIView.transition(with: self.view, duration: 0.5) {
+            self.changeAlphaComponent(0)
+            SupportingMethods.shared.turnCoverView(.on)
+        }
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+            
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
         
     }
 }
 
+// MARK: - Extension for ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding : Apple Login
+extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    // Apple ID
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        // Apple ID
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            // 계정 정보 가져오기
+            // Code & Token
+            let identityToken = String(decoding: appleIDCredential.identityToken!, as: UTF8.self)
+            UserDefaults.standard.set(identityToken, forKey: "identityToken")
+            print("identityToken: \(identityToken)")
+            
+            let authorizationCode = String(decoding: appleIDCredential.authorizationCode!, as: UTF8.self)
+            UserDefaults.standard.set(authorizationCode, forKey: "authorizationCode")
+            print("authorizationCode: \(authorizationCode)")
+            
+            let userIdentifier = appleIDCredential.user
+            UserDefaults.standard.set(userIdentifier, forKey: "appleUserId")
+            print("userIdentifier: \(userIdentifier)")
+            
+            if let name = appleIDCredential.fullName {
+                if name.description == "" {
+                    UserDefaults.standard.set("", forKey: "appleUserName")
+                } else {
+                    if let familyName = name.familyName, let givenName = name.givenName {
+                        let appleUserName = "\(familyName)\(givenName)"
+                        UserDefaults.standard.set(appleUserName, forKey: "appleUserName")
+                        print("koreanName: \(appleUserName)")
+                    }
+                    print("name: \(name)")
+                }
+            }
+            
+            
+            if let userEmail = appleIDCredential.email {
+                UserDefaults.standard.set(userEmail, forKey: "appleUserEmail")
+            } else {
+                do {
+                    let jwt = try decode(jwt: identityToken)
+                    if let email = jwt["email"].string {
+                        UserDefaults.standard.set(email, forKey: "appleUserEmail")
+                    }
+                } catch {
+                    print(error)
+                    UserDefaults.standard.set("", forKey: "appleUserEmail")
+                    SupportingMethods.shared.turnCoverView(.off)
+                }
+            }
+            
+            guard let sendUserId = UserDefaults.standard.string(forKey: "appleUserId") else {
+                SupportingMethods.shared.turnCoverView(.off)
+                return
+            }
+            guard let sendCode = UserDefaults.standard.string(forKey: "authorizationCode") else {
+                SupportingMethods.shared.turnCoverView(.off)
+                return
+            }
+            guard let sendToken = UserDefaults.standard.string(forKey: "identityToken") else {
+                SupportingMethods.shared.turnCoverView(.off)
+                return
+            }
+            guard let sendName = UserDefaults.standard.string(forKey: "appleUserName") else {
+                SupportingMethods.shared.turnCoverView(.off)
+                return
+            }
+            guard let email = UserDefaults.standard.string(forKey: "appleUserEmail") else {
+                SupportingMethods.shared.turnCoverView(.off)
+                return
+            }
+            
+            print("User ID : \(sendUserId)")
+            print("User Email : \(email)")
+            print("User Name : \(sendName)")
+            print("Token : \(String(describing: sendToken))")
+            print("Code : \(String(describing: sendCode))")
+            
+            // FIXME: API 넣어주기
+            SupportingMethods.shared.turnCoverView(.off)
+            
+        default:
+            SupportingMethods.shared.turnCoverView(.off)
+            break
+        }
+    }
+    
+    // Apple ID 연동 실패 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple ID Error: \(error.localizedDescription)")
+        SupportingMethods.shared.turnCoverView(.off)
+    }
+    
+    // Apple 로그인을 Modal 시트로 표시
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}
