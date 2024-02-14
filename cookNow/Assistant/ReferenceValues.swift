@@ -16,6 +16,19 @@ struct ReferenceValues {
 
 // MARK: - Extension of referenceValues
 extension ReferenceValues {
+    
+    static var loginWay: LoginWay {
+        get {
+            return LoginWay(rawValue: UserDefaults.standard.integer(forKey: "loginWay"))!
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: "loginWay")
+        }
+    }
+    
+    static let kakaoAppKey: String = "814ca31058303129bbab1f38291d017b"
+    
     struct Size {
         struct Device {
             static let width: CGFloat = ReferenceValues.keyWindow.screen.bounds.width
@@ -44,4 +57,10 @@ extension ReferenceValues {
             static let subComment: Int = 150
         }
     }
+}
+
+enum LoginWay: Int {
+    case kakao = 0
+    case naver = 1
+    case apple = 2
 }

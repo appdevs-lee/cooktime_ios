@@ -10,3 +10,8 @@ import Foundation
 final class LoginModel {
     
 }
+
+struct NaverLoginResult: Codable {
+    let id: String
+    let name: String
+}

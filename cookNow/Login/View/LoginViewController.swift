@@ -10,6 +10,9 @@ import Gifu
 import Lottie
 import AuthenticationServices
 import JWTDecode
+import KakaoSDKUser
+import NaverThirdPartyLogin
+import Alamofire
 
 final class LoginViewController: UIViewController {
     
@@ -141,6 +144,8 @@ final class LoginViewController: UIViewController {
         
         return button
     }()
+    
+    let naverLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -300,32 +305,123 @@ extension LoginViewController {
         self.snsLoginTitleLabel.alpha = alpha
         self.snsLoginButtonStackView.alpha = alpha
     }
-}
-
-// MARK: - Extension for selector methods
-extension LoginViewController {
-    @objc func kakaoButton(_ sender: UIButton) {
+    
+    func loadKakaoUserData() {
         self.animationAfterLoginView.play()
         
         UIView.transition(with: self.view, duration: 0.5) {
             self.changeAlphaComponent(0)
             SupportingMethods.shared.turnCoverView(.on)
-            
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        UserApi.shared.me() { [self] user, error in
+            if let error = error {
+                print("Error: \(error)")
+                SupportingMethods.shared.turnCoverView(.off)
+            } else {
+                guard let email = user?.kakaoAccount?.email else {
+//                    let vc = AlertPopViewController(.normalOneButton(messageTitle: "이메일 정보 등록 요청", messageContent: "가입을 위해서는 이메일 정보가 필요합니다.\n 카카오톡에서 해당 계정에 이메일 정보를\n 추가 등록하신 후, 재로그인 해주세요.", buttonTitle: "확인", action: {
+//                        return
+//                    }))
+//                    
+//                    self.present(vc, animated: true) {
+//                        SupportingMethods.shared.turnCoverView(.off)
+//                    }
+                    
+                    return
+                }
+                
+                guard let name = user?.kakaoAccount?.profile?.nickname
+                else {
+                    print("name is nil")
+                    SupportingMethods.shared.turnCoverView(.off)
+                    return
+                }
+                
+                // FIXME: API 넣어주기
+                let vc = TabBarController()
+                vc.selectedIndex = 1
+                
+                SupportingMethods.shared.turnCoverView(.off)
+                self.present(vc, animated: true) {
+                    ReferenceValues.loginWay = .kakao
+                    
+                }
+                
+            }
+        }
+    }
+    
+    func getInfoInNaver() {
+        // 현재 토큰이 유효한지 확인 > default로 1시간
+        guard let isValidAccessToken = self.naverLoginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+
+        if !isValidAccessToken {
+            return
+        }
+
+        guard let tokenType = self.naverLoginInstance?.tokenType else { return }
+        guard let accessToken = self.naverLoginInstance?.accessToken else { return }
+        
+        self.animationAfterLoginView.play()
+        
+        UIView.transition(with: self.view, duration: 0.5) {
+            self.changeAlphaComponent(0)
+            SupportingMethods.shared.turnCoverView(.on)
+        }
+
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
+        let url = URL(string: urlStr)!
+
+        let authorization = "\(tokenType) \(accessToken)"
+        let request = AF.request(url, method: .get, parameters: nil,
+          encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+        
+        request.responseJSON { response in
+            guard let result = response.value as? [String: AnyObject] else { return }
+            guard let object = result["response"] as? [String: AnyObject] else { return }
+            
+            let name = object["name"] as? String
+            let id = object["id"] as? String
+
+            print("name: ", name ?? "no name")
+            print("id: ", id ?? "no id")
+            
+            // FIXME: API 넣어주기
             let vc = TabBarController()
             vc.selectedIndex = 1
             
             SupportingMethods.shared.turnCoverView(.off)
-            self.present(vc, animated: true)
+            self.present(vc, animated: true) {
+                ReferenceValues.loginWay = .naver
+                
+            }
         }
-        
-        
+
+    }
+    
+}
+
+// MARK: - Extension for selector methods
+extension LoginViewController {
+    @objc func kakaoButton(_ sender: UIButton) {
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk { (oauthToken, error) in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    
+                } else {
+                    print("카카오 로그인 성공")
+                    self.loadKakaoUserData()
+                }
+            }
+        }
         
     }
     
     @objc func naverButton(_ sender: UIButton) {
+        self.naverLoginInstance?.requestThirdPartyLogin()
+        self.naverLoginInstance?.delegate = self
         
     }
     
@@ -427,7 +523,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             print("Code : \(String(describing: sendCode))")
             
             // FIXME: API 넣어주기
+            let vc = TabBarController()
+            vc.selectedIndex = 1
+            
             SupportingMethods.shared.turnCoverView(.off)
+            self.present(vc, animated: true) {
+                ReferenceValues.loginWay = .apple
+                
+            }
             
         default:
             SupportingMethods.shared.turnCoverView(.off)
@@ -445,4 +548,29 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
+}
+
+// MARK: - Extension for NaverThirdPartyLoginConnectionDelegate : Naver Login
+extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+        print("Success Login")
+        self.getInfoInNaver()
+        
+    }
+    
+    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+        self.getInfoInNaver()
+        
+    }
+    
+    func oauth20ConnectionDidFinishDeleteToken() {
+        print("Naver Logout")
+        
+    }
+    
+    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+        print("error = \(error.localizedDescription)")
+        
+    }
+    
 }
