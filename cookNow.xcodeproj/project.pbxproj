@@ -10,6 +10,7 @@
 		0533D9342B733B1300DF51B1 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0533D9332B733B1300DF51B1 /* loading.gif */; };
 		0533D9372B73864400DF51B1 /* loadingAfterLogin.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0533D9352B73864400DF51B1 /* loadingAfterLogin.gif */; };
 		0533D9382B73864400DF51B1 /* Splash.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0533D9362B73864400DF51B1 /* Splash.gif */; };
+		05729C592B8EBCE40068D53F /* SearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05729C582B8EBCE40068D53F /* SearchTextFieldView.swift */; };
 		0579B5B42B71BEFE0054117E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B32B71BEFE0054117E /* LoginViewController.swift */; };
 		0579B5B62B71C69B0054117E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B52B71C69B0054117E /* LoginModel.swift */; };
 		0579B5BA2B71C6D80054117E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579B5B92B71C6D80054117E /* User.swift */; };
@@ -49,6 +50,7 @@
 		0533D9332B733B1300DF51B1 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		0533D9352B73864400DF51B1 /* loadingAfterLogin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingAfterLogin.gif; sourceTree = "<group>"; };
 		0533D9362B73864400DF51B1 /* Splash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Splash.gif; sourceTree = "<group>"; };
+		05729C582B8EBCE40068D53F /* SearchTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldView.swift; sourceTree = "<group>"; };
 		0579B5B32B71BEFE0054117E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0579B5B52B71C69B0054117E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0579B5B92B71C6D80054117E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -113,6 +115,13 @@
 				05981CDC2B7462D1009AC0F8 /* loadingAfterLogin.json */,
 			);
 			path = GifAsset;
+			sourceTree = "<group>";
+		};
+		05729C5A2B8F16240068D53F /* SubIngredients */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubIngredients;
 			sourceTree = "<group>";
 		};
 		0579B5B22B71BEEF0054117E /* Login */ = {
@@ -182,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				0597DA842B74758900D3AA4D /* IngredientsViewController.swift */,
+				05729C582B8EBCE40068D53F /* SearchTextFieldView.swift */,
+				05729C5A2B8F16240068D53F /* SubIngredients */,
 			);
 			path = Ingredients;
 			sourceTree = "<group>";
@@ -428,6 +439,7 @@
 				2D333F9F2B556AC600B418C0 /* TemplateViewController.swift in Sources */,
 				2D333F772B55697F00B418C0 /* AppDelegate.swift in Sources */,
 				2D333F9D2B556AC100B418C0 /* TemplateView.swift in Sources */,
+				05729C592B8EBCE40068D53F /* SearchTextFieldView.swift in Sources */,
 				2D333FA02B556AC900B418C0 /* TempateViewPagerViewController.swift in Sources */,
 				2D333F9C2B556ABE00B418C0 /* TemplateTableViewCell.swift in Sources */,
 				2D333FA22B556ACE00B418C0 /* TemplateCollectionViewCell.swift in Sources */,
@@ -590,9 +602,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = cookNow/cookNow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3C347T67DV;
+				DEVELOPMENT_TEAM = 6432QDJZHM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cookNow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "쿡 나우";
@@ -609,6 +622,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sider.cookNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -624,9 +638,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = cookNow/cookNow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3C347T67DV;
+				DEVELOPMENT_TEAM = 6432QDJZHM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cookNow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "쿡 나우";
@@ -643,6 +658,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sider.cookNow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;

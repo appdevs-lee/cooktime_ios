@@ -11,7 +11,7 @@ final class ViewPagerCollectionViewCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .useFont(ofSize: 18, weight: .Bold)
+        label.font = .useFont(ofSize: 16, weight: .Medium)
         label.textColor = .useRGB(red: 189, green: 189, blue: 189)
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -77,7 +77,7 @@ extension ViewPagerCollectionViewCell: EssentialCellHeaderMethods {
         
         // indicatorView
         NSLayoutConstraint.activate([
-            self.indicatorView.heightAnchor.constraint(equalToConstant: 4),
+            self.indicatorView.heightAnchor.constraint(equalToConstant: 2),
             self.indicatorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.indicatorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.indicatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
